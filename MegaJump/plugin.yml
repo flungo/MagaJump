@@ -1,0 +1,9 @@
+name: MegaJump
+main: me.flungo.bukkit.VoidWarp.VoidWarp
+version: 0.1.0
+description: >
+              Teleports you to the spawn of a specified world when you fall through the void.
+commands:
+    mj:
+        description: Toggle mega jump
+        usage: /mj [amplifier]
