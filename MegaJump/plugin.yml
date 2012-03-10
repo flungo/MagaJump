@@ -1,9 +1,9 @@
 name: MegaJump
-main: me.flungo.bukkit.MegaJump.MegaJump
+main: me.flungo.bukkit.MegaJump.MagaJump
 version: 0.1.0
 description: >
               Makes you jump.... really high!
 commands:
     mj:
-        description: Toggle mega jump
+        description: Toggle megajump
         usage: /mj [amplifier]

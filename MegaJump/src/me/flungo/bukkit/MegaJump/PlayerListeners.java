@@ -1,5 +1,6 @@
 package me.flungo.bukkit.MegaJump;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -18,15 +19,27 @@ public class PlayerListeners implements Listener {
 
 	@EventHandler
 	public void onPlayerJump(PlayerMoveEvent event) {
-		if(event.getTo().getY() > event.getFrom().getY()) {
-			Player p = event.getPlayer();
+		Player p = event.getPlayer();
+		if(event.getTo().getY() > event.getFrom().getY() && plugin.activePlayers.contains(p.getName())) {
 			Location loc = p.getLocation();
-			Vector velo = p.getVelocity();
-			double velo_x = velo.getX() * 2;
-			double velo_y = velo.getY() * 2;
-			double velo_z = velo.getZ() * 2;
-			Vector velo_new = new Vector(velo_x, velo_y, velo_z);
-			p.setVelocity(velo_new);
+			double loc_y = loc.getY();
+			loc.setY(loc_y);
+			Block floor = loc.getBlock();
+			if (floor.getTypeId() != 0) {
+				Vector velo = p.getVelocity();
+				double velo_x = velo.getX() * 1;
+				//double velo_x = 1;
+				double velo_y = velo.getY() * 1;
+				//double velo_y = 2;
+				double velo_z = velo.getZ() * 1;
+				//double velo_z = 1;
+				
+				//Vector velo_new = new Vector(velo_x, velo_y, velo_z);
+				//p.setVelocity(velo_new);
+				
+				p.sendMessage(ChatColor.GREEN + "Your velocity is: " + ChatColor.RED + velo_x + ", " + velo_y + ", " + velo_z);
+			}
+			
 		}
 	}
 	
