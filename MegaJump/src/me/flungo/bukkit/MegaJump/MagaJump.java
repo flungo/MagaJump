@@ -21,16 +21,25 @@ public class MagaJump extends JavaPlugin {
 	
 	public ArrayList<String> activePlayers = new ArrayList<String>();
 	
+	public static int defaultMultiplier;
+	
 	public void onDisable() {
 		PluginDescriptionFile pdffile = this.getDescription();
 		this.logger.info(pdffile.getName() + " is now disabled");
 	}
 	
 	public void onEnable() {
-		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvents(this.playerListener, this);
+		enable();
 		PluginDescriptionFile pdffile = this.getDescription();
 		this.logger.info(pdffile.getName() + " version " + pdffile.getVersion() + " is enabled.");
+	}
+	
+	private void enable() {
+		PluginManager pm = getServer().getPluginManager();
+		pm.registerEvents(this.playerListener, this);
+		getConfig().options().copyDefaults(true);
+		saveConfig();
+		defaultMultiplier = getConfig().getInt("default-multiplier");
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
