@@ -30,14 +30,14 @@ public class PlayerListeners implements Listener {
 			loc.setY(loc_y);
 			Block floor = loc.getBlock();
 			if (floor.getTypeId() != 0 && loc_y < 128) {
-				double velo_x = (to.getX() - from.getX()) * 10;
-				double velo_y = (to.getY() - from.getY()) * 10;
-				double velo_z = (to.getZ() - from.getZ()) * 10;
+				double velo_x = (to.getX() - from.getX()) * 5;
+				double velo_y = (to.getY() - from.getY()) * 5;
+				double velo_z = (to.getZ() - from.getZ()) * 5;
 				
 				Vector velo_new = new Vector(velo_x, velo_y, velo_z);
 				p.setVelocity(velo_new);
 				
-				p.sendMessage(ChatColor.GREEN + "Your velocity is: " + ChatColor.RED + velo_x + ", " + velo_y + ", " + velo_z);
+				//p.sendMessage(ChatColor.GREEN + "Your velocity is: " + ChatColor.RED + velo_x + ", " + velo_y + ", " + velo_z);
 			}
 			
 		}
