@@ -26,19 +26,19 @@ public class PlayerListeners implements Listener {
 		
 		if(to.getY() > from.getY() && plugin.activePlayers.contains(p.getName())) {
 			Location loc = p.getLocation();
-			double loc_y = loc.getY();
+			double loc_y = loc.getY() - 2;
 			loc.setY(loc_y);
 			Block floor = loc.getBlock();
 			if (floor.getTypeId() != 0) {
-				double velo_x = (to.getX() - from.getX()) * 1;
+				double velo_x = (to.getX() - from.getX()) * 10;
 				//double velo_x = 1;
-				double velo_y = (to.getX() - from.getX()) * 1;
+				double velo_y = (to.getY() - from.getY()) * 10;
 				//double velo_y = 2;
-				double velo_z = (to.getX() - from.getX()) * 1;
+				double velo_z = (to.getZ() - from.getZ()) * 10;
 				//double velo_z = 1;
 				
-				//Vector velo_new = new Vector(velo_x, velo_y, velo_z);
-				//p.setVelocity(velo_new);
+				Vector velo_new = new Vector(velo_x, velo_y, velo_z);
+				p.setVelocity(velo_new);
 				
 				p.sendMessage(ChatColor.GREEN + "Your velocity is: " + ChatColor.RED + velo_x + ", " + velo_y + ", " + velo_z);
 			}
