@@ -29,13 +29,10 @@ public class PlayerListeners implements Listener {
 			double loc_y = loc.getY() - 2;
 			loc.setY(loc_y);
 			Block floor = loc.getBlock();
-			if (floor.getTypeId() != 0) {
+			if (floor.getTypeId() != 0 && loc_y < 128) {
 				double velo_x = (to.getX() - from.getX()) * 10;
-				//double velo_x = 1;
 				double velo_y = (to.getY() - from.getY()) * 10;
-				//double velo_y = 2;
 				double velo_z = (to.getZ() - from.getZ()) * 10;
-				//double velo_z = 1;
 				
 				Vector velo_new = new Vector(velo_x, velo_y, velo_z);
 				p.setVelocity(velo_new);
