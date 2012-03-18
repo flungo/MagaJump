@@ -3,3 +3,4 @@
 #Sets the default jump multiplier if none is set.
 #Make sure this is an integer between 1 and 9.
 default-multiplier: 5
+debug: false

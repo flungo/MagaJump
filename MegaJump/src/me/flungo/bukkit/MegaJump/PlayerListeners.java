@@ -30,7 +30,7 @@ public class PlayerListeners implements Listener {
 			loc.setY(loc_y);
 			Block floor = loc.getBlock();
 			if (floor.getTypeId() != 0 && loc_y < 128) {
-				int m = MagaJump.defaultMultiplier;
+				int m = plugin.defaultMultiplier;
 				double velo_x = (to.getX() - from.getX()) * m;
 				double velo_y = (to.getY() - from.getY()) * m;
 				double velo_z = (to.getZ() - from.getZ()) * m;
@@ -38,7 +38,7 @@ public class PlayerListeners implements Listener {
 				Vector velo_new = new Vector(velo_x, velo_y, velo_z);
 				p.setVelocity(velo_new);
 				
-				if (p.isOp()) {
+				if (p.isOp() && plugin.debug) {
 					p.sendMessage(ChatColor.GREEN + "Your MegaJump multiplier is: " + ChatColor.BLUE + m);
 					p.sendMessage(ChatColor.GREEN + "Your velocity is: " + ChatColor.RED + velo_x + ", " + velo_y + ", " + velo_z);
 				}

@@ -21,7 +21,9 @@ public class MagaJump extends JavaPlugin {
 	
 	public ArrayList<String> activePlayers = new ArrayList<String>();
 	
-	public static int defaultMultiplier;
+	public int defaultMultiplier;
+	
+	public boolean debug;
 	
 	public void onDisable() {
 		PluginDescriptionFile pdffile = this.getDescription();
@@ -40,6 +42,7 @@ public class MagaJump extends JavaPlugin {
 		getConfig().options().copyDefaults(true);
 		saveConfig();
 		defaultMultiplier = getConfig().getInt("default-multiplier");
+		debug = getConfig().getBoolean("debug");
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
