@@ -50,7 +50,7 @@ public class PlayerListeners implements Listener {
 	public void onFallDamage(EntityDamageEvent event) {
 		if (event.getEntity() instanceof Player) {
 			Player p = (Player) event.getEntity();
-			if (plugin.activePlayers.containsKey(p.getName())) {
+			if (plugin.activePlayers.containsKey(p)) {
 				event.setCancelled(true);
 			}
 		}
