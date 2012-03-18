@@ -76,7 +76,11 @@ public class MagaJump extends JavaPlugin {
 					}
 					if (pName == null) {
 						Player p = (Player) sender;
-						p.sendMessage(ChatColor.RED + "MegaJump enabled with amplification factor " + amp);
+						if (activePlayers.containsKey(p)) {
+							p.sendMessage(ChatColor.RED + "MegaJump set to amplification factor " + amp);
+						} else {
+							p.sendMessage(ChatColor.RED + "MegaJump enabled with amplification factor " + amp);
+						}
 						activePlayers.put(p,amp);
 						return true;
 					} else {
@@ -85,9 +89,17 @@ public class MagaJump extends JavaPlugin {
 						if (p2 == null) {
 							p1.sendMessage("MegaJump cannot find specified user");
 						} else {
-							p1.sendMessage("MegaJump enabled for " + pName);
-							p2.sendMessage(ChatColor.RED + "MegaJump enabled");
-							activePlayers.put(p2,amp);
+							if (activePlayers.containsKey(p2)) {
+								p2.sendMessage(ChatColor.RED + "MegaJump disabled");
+								p1.sendMessage("MegaJump disabled for " + pName);
+								activePlayers.remove(p2);
+								return true;
+							} else {
+								p2.sendMessage(ChatColor.RED + "MegaJump enabled");
+								p1.sendMessage("MegaJump enabled for " + pName);
+								activePlayers.put(p2,amp);
+								return true;
+							}
 						}
 						return true;
 					}
@@ -103,8 +115,13 @@ public class MagaJump extends JavaPlugin {
 						} catch (NumberFormatException e1) {
 							return false;
 						}
-						p1.sendMessage("MegaJump enabled for " + pName + " with amplification factor " + amp);
-						p2.sendMessage(ChatColor.RED + "MegaJump enabled with amplification factor " + amp);
+						if (activePlayers.containsKey(p2)) {
+							p1.sendMessage("MegaJump enabled set to amplification factor " + amp + " for " + pName);
+							p2.sendMessage(ChatColor.RED + "MegaJump set to amplification factor" + amp);
+						} else {
+							p1.sendMessage("MegaJump enabled for " + pName + " with amplification factor " + amp);
+							p2.sendMessage(ChatColor.RED + "MegaJump enabled with amplification factor " + amp);
+						}
 						activePlayers.put(p2,amp);
 						return true;
 					}
