@@ -24,7 +24,7 @@ public class PlayerListeners implements Listener {
 		Location from = event.getFrom();
 		Location to = event.getTo();
 		
-		if(to.getY() > from.getY() && plugin.activePlayers.contains(p.getName())) {
+		if(to.getY() > from.getY() && plugin.activePlayers.containsKey(p)) {
 			Location loc = p.getLocation();
 			double loc_y = loc.getY() - 2;
 			loc.setY(loc_y);
@@ -50,7 +50,7 @@ public class PlayerListeners implements Listener {
 	public void onFallDamage(EntityDamageEvent event) {
 		if (event.getEntity() instanceof Player) {
 			Player p = (Player) event.getEntity();
-			if (plugin.activePlayers.contains(p.getName())) {
+			if (plugin.activePlayers.containsKey(p.getName())) {
 				event.setCancelled(true);
 			}
 		}

@@ -1,6 +1,7 @@
 package me.flungo.bukkit.MegaJump;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 import org.bukkit.ChatColor;
@@ -19,7 +20,7 @@ public class MagaJump extends JavaPlugin {
 	
 	public final PlayerListeners playerListener = new PlayerListeners(this);
 	
-	public ArrayList<String> activePlayers = new ArrayList<String>();
+	public HashMap<Player, Integer> activePlayers = new HashMap<Player, Integer>();
 	
 	public int defaultMultiplier;
 	
@@ -54,15 +55,14 @@ public class MagaJump extends JavaPlugin {
 				return true;
 			} else {
 				Player p = (Player) sender;
-				String pName = p.getName();
 				
-				if (activePlayers.contains(pName)) {
+				if (activePlayers.containsKey(p)) {
 					p.sendMessage(ChatColor.RED + "MegaJump disabled");
-					activePlayers.remove(pName);
+					activePlayers.remove(p);
 					return true;
 				} else {
 					p.sendMessage(ChatColor.RED + "MegaJump enabled");
-					activePlayers.add(pName);
+					activePlayers.put(p,3);
 					return true;
 				}
 			}
