@@ -30,7 +30,7 @@ public class PlayerListeners implements Listener {
 			loc.setY(loc_y);
 			Block floor = loc.getBlock();
 			if (floor.getTypeId() != 0 && loc_y < 128) {
-				int m = plugin.defaultMultiplier;
+				int m = plugin.activePlayers.get(p);
 				double velo_x = (to.getX() - from.getX()) * m;
 				double velo_y = (to.getY() - from.getY()) * m;
 				double velo_z = (to.getZ() - from.getZ()) * m;

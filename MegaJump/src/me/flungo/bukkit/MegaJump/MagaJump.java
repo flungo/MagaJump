@@ -71,7 +71,7 @@ public class MagaJump extends JavaPlugin {
 					try {
 						amp = Integer.parseInt(args[0]);
 					} catch (NumberFormatException e1) {
-						amp = 3;
+						amp = defaultMultiplier;
 						pName = args[0];
 					}
 					if (pName == null) {
