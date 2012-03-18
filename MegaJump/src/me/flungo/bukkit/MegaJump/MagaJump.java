@@ -117,7 +117,7 @@ public class MagaJump extends JavaPlugin {
 						}
 						if (activePlayers.containsKey(p2)) {
 							p1.sendMessage("MegaJump enabled set to amplification factor " + amp + " for " + pName);
-							p2.sendMessage(ChatColor.RED + "MegaJump set to amplification factor" + amp);
+							p2.sendMessage(ChatColor.RED + "MegaJump set to amplification factor " + amp);
 						} else {
 							p1.sendMessage("MegaJump enabled for " + pName + " with amplification factor " + amp);
 							p2.sendMessage(ChatColor.RED + "MegaJump enabled with amplification factor " + amp);
