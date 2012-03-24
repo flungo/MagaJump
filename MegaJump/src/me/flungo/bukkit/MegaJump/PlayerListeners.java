@@ -29,7 +29,8 @@ public class PlayerListeners implements Listener {
 			double loc_y = loc.getY() - 2;
 			loc.setY(loc_y);
 			Block floor = loc.getBlock();
-			if (floor.getTypeId() != 0 && loc_y < 128) {
+			int max_height = loc.getWorld().getMaxHeight();
+			if (floor.getTypeId() != 0 && loc_y < max_height) {
 				int m = plugin.activePlayers.get(p);
 				double velo_x = (to.getX() - from.getX()) * m;
 				double velo_y = (to.getY() - from.getY()) * m;

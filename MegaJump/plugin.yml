@@ -6,4 +6,8 @@ description: >
 commands:
     mj:
         description: Toggle megajump
-        usage: /mj <user> <amplifier>
+        usage: |
+              /mj - Tooggle MegaJump
+              /mj <user>
+              /mj <amplifier>
+              /mj <user> <amplifier>
