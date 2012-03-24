@@ -1,8 +1,6 @@
 package me.flungo.bukkit.MegaJump;
 
 import java.util.HashMap;
-import java.util.logging.Logger;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -11,11 +9,15 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class MagaJump extends JavaPlugin {
+public class MegaJump extends JavaPlugin {
 	
-	public static MagaJump plugin;
+	public static MegaJump plugin;
+    
+    public PluginManager pm;
+    
+    public PluginDescriptionFile pdf;
 	
-	public final Logger logger = Logger.getLogger("MineCraft");
+	public final Log log = new Log(this);
 	
 	public final PlayerListeners playerListener = new PlayerListeners(this);
 	
@@ -26,18 +28,17 @@ public class MagaJump extends JavaPlugin {
 	public boolean debug;
 	
 	public void onDisable() {
-		PluginDescriptionFile pdffile = this.getDescription();
-		this.logger.info(pdffile.getName() + " is now disabled");
+		this.log.logMessage(pdf.getName() + " is now disabled");
 	}
 	
 	public void onEnable() {
+		pdf = this.getDescription();
 		enable();
-		PluginDescriptionFile pdffile = this.getDescription();
-		this.logger.info(pdffile.getName() + " version " + pdffile.getVersion() + " is enabled.");
+		this.log.logMessage(pdf.getName() + " version " + pdf.getVersion() + " is enabled.");
 	}
 	
 	private void enable() {
-		PluginManager pm = getServer().getPluginManager();
+		pm = getServer().getPluginManager();
 		pm.registerEvents(this.playerListener, this);
 		getConfig().options().copyDefaults(true);
 		saveConfig();
@@ -134,6 +135,6 @@ public class MagaJump extends JavaPlugin {
 
 	public void logMessage(String msg) {
 		PluginDescriptionFile pdFile = this.getDescription();
-		this.logger.info(pdFile.getName() + " " + pdFile.getVersion() + " " + msg);
+		this.log.logMessage(pdFile.getName() + " " + pdFile.getVersion() + " " + msg);
 	}
 }

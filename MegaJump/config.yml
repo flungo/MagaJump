@@ -4,3 +4,23 @@
 #Make sure this is an integer between 1 and 9.
 default-multiplier: 5
 debug: false
+
+#Permissions systems to use
+permissions:
+  #Give OPs all permissions
+  op: true
+  #Enable if using a super-perms based permissions manager
+  bukkit: true
+  #Enable if using a vault supported permissions manager
+  vault: false
+  
+  #If not using permissions set the default permissions for all users
+  defaults:
+    #Allows users to use MegaJump
+    jumper: true
+    #Allows users to enable/disable MegaJump for themselves
+    enable.self: false
+    #Allows users to enable/disable MegaJump for other users
+    enable.others: false
+    #Allows users to control all MegaJump settings
+    admin: false

@@ -11,9 +11,9 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 
 public class PlayerListeners implements Listener {
-	public static MagaJump plugin;
+	public static MegaJump plugin;
 	
-	public PlayerListeners(MagaJump instance) {
+	public PlayerListeners(MegaJump instance) {
 		plugin = instance;
 	}
 
