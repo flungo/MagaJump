@@ -1,6 +1,7 @@
 package me.flungo.bukkit.MegaJump;
 
 import java.util.HashMap;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -17,8 +18,6 @@ public class MegaJump extends JavaPlugin {
     
     public PluginDescriptionFile pdf;
 	
-	public final Log log = new Log(this);
-	
 	public final PlayerListeners playerListener = new PlayerListeners(this);
 	
 	public HashMap<Player, Integer> activePlayers = new HashMap<Player, Integer>();
@@ -26,6 +25,10 @@ public class MegaJump extends JavaPlugin {
 	public int defaultMultiplier;
 	
 	public boolean debug;
+	
+	public final Log log = new Log(this);
+	
+	public final Permissions permissions = new Permissions(this, log);
 	
 	public void onDisable() {
 		this.log.logMessage(pdf.getName() + " is now disabled");

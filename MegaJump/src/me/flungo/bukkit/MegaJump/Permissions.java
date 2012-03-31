@@ -4,17 +4,21 @@ import java.util.logging.Level;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import net.milkbowl.vault.permission.Permission;
 
 public class Permissions {
-	public static MegaJump plugin;
+	public static JavaPlugin plugin;
 	
-	public Permissions(MegaJump instance) {
+	private static Log log;
+	
+	private static String prefix;
+	
+	public Permissions(JavaPlugin instance, Log logger) {
 		plugin = instance;
+		log = logger;
 	}
-	
-	private static Log log = plugin.log;
 	
 	private static boolean op;
 	
@@ -66,7 +70,7 @@ public class Permissions {
 		}
     }
 	
-	public void setupPermissions() {
+	public void setupPermissions(String nodePrefix) {
 		setupOPPermissions();
 		if (op) {
 			log.logMessage("OP permissions set up");
@@ -93,14 +97,25 @@ public class Permissions {
 		}
 	}
 	
+	public void setupPermissions() {
+		String nodePrefix = plugin.getDescription().getClass().toString().toLowerCase();
+		setupPermissions(nodePrefix);
+	}
+	
 	private boolean hasNode(Player p, String node) {
 		if (bukkit && p.hasPermission(node)) return true;
 		if (vault && vaultPermission.has(p, node)) return true;
 		return false;
 	}
 	
+	public boolean hasPermission(Player p, String permission) {
+		if (plugin.getConfig().getBoolean("permissions.default." + permission)) return true;
+		String node = prefix + "." + permission;
+		if (hasNode(p, node)) return true;
+		return false;
+	}
+	
 	public boolean isAdmin(Player p) {
-		if (plugin.getConfig().getBoolean("permissions.default.admin")) return true;
 		if (p.isOp() && op) return true;
 		String node = "voidwarp.admin";
 		if (hasNode(p, node)) return true;
@@ -109,21 +124,8 @@ public class Permissions {
 	
 	public boolean isUser(Player p) {
 		if (!plugin.getConfig().getBoolean("enable")) return false;
-		if (plugin.getConfig().getBoolean("permissions.nodes.user")) {
-			String node = "voidwarp.user";
-			if (hasNode(p, node)) return true;
-		}
-		if (isAdmin(p)) return true;
-		if (!bukkit && !vault) return true;
-		return false;
-	}
-	
-	public boolean isJumper(Player p) {
-		if (!plugin.getConfig().getBoolean("enable")) return false;
-		if (plugin.getConfig().getBoolean("permissions.nodes.jumper")) {
-			String node = "voidwarp.user";
-			if (hasNode(p, node)) return true;
-		}
+		String node = "voidwarp.user";
+		if (hasNode(p, node)) return true;
 		if (isAdmin(p)) return true;
 		if (!bukkit && !vault) return true;
 		return false;

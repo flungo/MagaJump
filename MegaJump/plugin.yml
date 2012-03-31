@@ -1,5 +1,5 @@
 name: MegaJump
-main: me.flungo.bukkit.MegaJump.MagaJump
+main: me.flungo.bukkit.MegaJump.MegaJump
 version: 0.2.0
 description: >
               Makes you jump.... really high!
