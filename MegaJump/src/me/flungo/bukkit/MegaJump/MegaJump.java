@@ -41,6 +41,8 @@ public class MegaJump extends JavaPlugin {
 	}
 	
 	private void enable() {
+		log.setupLogger();
+		permissions.setupPermissions();
 		pm = getServer().getPluginManager();
 		pm.registerEvents(this.playerListener, this);
 		getConfig().options().copyDefaults(true);
