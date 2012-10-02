@@ -62,16 +62,8 @@ public class MegaJump extends JavaPlugin {
 			} else {
 				if (args.length == 0) {
 					Player p = (Player) sender;
-					amp = defaultMultiplier;
-					if (activePlayers.containsKey(p)) {
-						p.sendMessage(ChatColor.RED + "MegaJump disabled");
-						activePlayers.remove(p);
-						return true;
-					} else {
-						p.sendMessage(ChatColor.RED + "MegaJump enabled");
-						activePlayers.put(p,amp);
-						return true;
-					}
+					toggle(p);
+					return true;
 				} else if (args.length == 1) {
 					String pName = null;
 					try {
@@ -136,6 +128,25 @@ public class MegaJump extends JavaPlugin {
 		}
 		
 		return false;
+	}
+	
+	public void set() {
+		
+	}
+	
+	public void toggle(CommandSender sender, Player p) {
+		toggle(p);
+	}
+	
+	public void toggle(Player p) {
+		int amp = defaultMultiplier;
+		if (activePlayers.containsKey(p)) {
+			p.sendMessage(ChatColor.RED + "MegaJump disabled");
+			activePlayers.remove(p);
+		} else {
+			p.sendMessage(ChatColor.RED + "MegaJump enabled");
+			activePlayers.put(p,amp);
+		}
 	}
 
 	public void logMessage(String msg) {
